@@ -4,9 +4,12 @@ import 'package:meals_app/data/dummy_data.dart';
 import 'package:meals_app/models/category.dart';
 import 'package:meals_app/screens/meals.dart';
 import 'package:meals_app/widgets/category_grid_item.dart';
+import 'package:meals_app/models/meal.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  const CategoriesScreen({required this.onToggleFavotie, super.key});
+
+  final void Function(Meal meal) onToggleFavotie;
 
   void _selectCategory(BuildContext context, Category category) {
     final filteredMeals = dummyMeals
@@ -19,6 +22,7 @@ class CategoriesScreen extends StatelessWidget {
         builder: (ctx) => MealsScreen(
           title: category.title,
           meals: filteredMeals,
+          onToggleFavotie: onToggleFavotie,
         ),
       ),
     );

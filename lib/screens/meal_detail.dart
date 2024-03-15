@@ -4,10 +4,12 @@ import 'package:meals_app/models/meal.dart';
 class MealDetail extends StatelessWidget {
   const MealDetail({
     super.key,
+    required this.onToggleFavotie,
     required this.meal,
   });
 
   final Meal meal;
+  final void Function(Meal meal) onToggleFavotie;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +18,10 @@ class MealDetail extends StatelessWidget {
         title: Text(meal.title),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.star),
+            onPressed: () {
+              onToggleFavotie(meal);
+            },
+            icon: const Icon(Icons.star),
           ),
         ],
       ),
